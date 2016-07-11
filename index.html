@@ -2,17 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Hello, World! • A-Frame</title>
-    <meta name="description" content="Hello, World! • A-Frame">
+    <title>Decatur Maker + BNR Test</title>
+    <meta name="description" content="Decatur Maker + BNR Test">
     <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-cube>
-      <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+      <a-assets>
+        <video id="test-video" src="videos/test.mp4"></video>
+        <img id="img-logo-bnr" src="images/logo-bnr.png"></img>
+        <img id="img-logo-dm" src="images/logo-dm.png"></img>
+        <img id="img-start-button" src="images/start-button.gif"></img>
+      </a-assets>
+
+      <a-image src="#img-logo-bnr" id="logo-bnr" position="-2 0 0" scale="1.5 1.5 1.5">
+        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
+      </a-image>
+      <a-image src="#img-logo-dm" id="logo-dm" position="2 0 0" scale="1.5 1.5 1.5">
+        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
+      </a-image>
+      <a-image src="#img-start-button" id="start-button" position="0 -2 0" scale="1.5 1.5 1.5">
+        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
+      </a-image>
+
+      <a-videosphere id="vs" src="#test-video" rotation="0 -90 0"></a-videosphere>
+
+      <a-entity position="0 0 5">
+        <a-entity camera look-controls id="player">
+          <a-cursor color="#FFFFAA"></a-cursor>
+        </a-entity>
+      </a-entity>
     </a-scene>
   </body>
+  <script>
+      var sceneEl = document.getElementsByTagName('a-scene')[0];
+
+      sceneEl.addEventListener('loaded', function() {
+        document.querySelector("video#test-video").pause();
+        var vs = document.querySelector("#vs");
+        var startButton = document.querySelector("#start-button");
+
+        startButton.addEventListener("mouseenter", function() {
+          vs.emit("start");
+          document.querySelector("#logo-dm").emit("start");
+          document.querySelector("#logo-bnr").emit("start");
+          document.querySelector("#start-button").emit("start");
+        });
+        vs.addEventListener("start", function() {
+          setTimeout( function() {
+            document.querySelector("video#test-video").play();
+          }, 150);
+        });
+      });
+
+  </script>
 </html>
