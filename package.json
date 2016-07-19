@@ -1,6 +1,6 @@
 {
-  "name": "aframe-boilerplate",
-  "description": "Boilerplate for creating WebVR scenes using A-Frame",
+  "name": "dm-test",
+  "description": "dm-test",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -13,9 +13,5 @@
     "ghpages": "0.0.3"
   },
   "keywords": [
-    "aframe",
-    "aframe-example",
-    "aframe-scene",
-    "aframe-boilerplate"
   ]
 }
