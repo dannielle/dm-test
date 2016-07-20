@@ -9,23 +9,13 @@
   <body>
     <a-scene>
       <a-assets>
-        <video id="test-video" src="videos/test.mp4"></video>
-        <img id="img-logo-bnr" src="images/logo-bnr.png"></img>
-        <img id="img-logo-dm" src="images/logo-dm.png"></img>
-        <img id="img-start-button" src="images/start-button.gif"></img>
+        <img id="image-splash" src="images/welcome.png"></img>
       </a-assets>
 
-      <a-image src="#img-logo-bnr" id="logo-bnr" position="-2 0 0" scale="1.5 1.5 1.5">
-        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
-      </a-image>
-      <a-image src="#img-logo-dm" id="logo-dm" position="2 0 0" scale="1.5 1.5 1.5">
-        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
-      </a-image>
-      <a-image src="#img-start-button" id="start-button" position="0 -2 0" scale="1.5 1.5 1.5">
-        <a-animation attribute="scale" dur="1000" easing="ease-in-elastic" begin="start" to="0 0 0"></a-animation>
+      <a-image id="splash" src="#image-splash" position="0 0 0" scale="5 5 5" onClick="location.href='/dog-video.html'">
       </a-image>
 
-      <a-videosphere id="vs" src="#test-video" rotation="0 -90 0"></a-videosphere>
+      <a-videosphere id="vs"></a-videosphere>
 
       <a-entity position="0 0 5">
         <a-entity camera look-controls id="player">
@@ -35,25 +25,6 @@
     </a-scene>
   </body>
   <script>
-      var sceneEl = document.getElementsByTagName('a-scene')[0];
-
-      sceneEl.addEventListener('loaded', function() {
-        document.querySelector("video#test-video").pause();
-        var vs = document.querySelector("#vs");
-        var startButton = document.querySelector("#start-button");
-
-        startButton.addEventListener("mouseenter", function() {
-          vs.emit("start");
-          document.querySelector("#logo-dm").emit("start");
-          document.querySelector("#logo-bnr").emit("start");
-          document.querySelector("#start-button").emit("start");
-        });
-        vs.addEventListener("start", function() {
-          setTimeout( function() {
-            document.querySelector("video#test-video").play();
-          }, 150);
-        });
-      });
 
   </script>
 </html>
