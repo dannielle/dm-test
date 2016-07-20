@@ -14,6 +14,7 @@
         <video id="test-video" src="../videos/test.mp4"></video>
       </a-assets>
 
+      <a-image id="play-video" src="#image-play-video" position="0 0 2"></a-image>
       <a-image id="tap-to-continue" src="#image-tap-to-continue" onClick="location.href='../demos/model.html'" position="0 0 10" rotation="0 180 0" scale="1.5 1.5 1.5"></a-image>
 
       <a-videosphere id="vs" src="#test-video" rotation="0 -90 0"></a-videosphere>
@@ -25,5 +26,24 @@
       </a-entity>
     </a-scene>
   </body>
+  <script>
+      var sceneEl = document.getElementsByTagName('a-scene')[0];
 
+      sceneEl.addEventListener('loaded', function() {
+        document.querySelector("video#test-video").pause();
+        var vs = document.querySelector("#vs");
+        var startButton = document.querySelector("#play-video");
+
+        startButton.addEventListener("click", function() {
+          vs.emit("start");
+          startButton.setAttribute("visible", "false");
+        });
+        vs.addEventListener("start", function() {
+          setTimeout( function() {
+            document.querySelector("video#test-video").play();
+          }, 150);
+        });
+      });
+
+  </script>
 </html>
