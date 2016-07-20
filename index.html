@@ -10,12 +10,13 @@
     <a-scene>
       <a-assets>
         <img id="image-splash" src="images/welcome.png"></img>
+        <img id="image-sky" src="images/sky.png"></img>
       </a-assets>
 
-      <a-image id="splash" src="#image-splash" position="0 0 0" scale="5 5 5" onClick="location.href='/dog-video.html'">
+      <a-image id="splash" src="#image-splash" position="0 0 0" scale="5 5 5" onClick="location.href='../dog-video.html'">
       </a-image>
 
-      <a-videosphere id="vs"></a-videosphere>
+      <a-sky id="sky" src="#image-sky"></a-sky>
 
       <a-entity position="0 0 5">
         <a-entity camera look-controls id="player">
