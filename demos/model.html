@@ -9,8 +9,9 @@
   <body>
     <a-scene>
       <a-assets>
-        <a-asset-item id="model-tiny" src="models/tiny.dae"></a-asset-item>
-        <img id="image-tap-to-continue" src="images/tap-to-continue.png"></img>
+        <a-asset-item id="model-tiny" src="../models/tiny.dae"></a-asset-item>
+        <img id="image-tap-to-continue" src="../images/tap-to-continue.png"></img>        
+        <img id="image-sky" src="../images/sky.png"></img>
       </a-assets>
 
       <a-collada-model src="#model-tiny" scale="5 5 5" position="0 -10 0" rotation="0 45 0">
@@ -19,10 +20,10 @@
 
       
       <a-light type="ambient" color="#7c6cbf" intensity="0.5"></a-light>
-      <a-sky color="#AACCCC"></a-sky>
+      <a-sky src="#image-sky"></a-sky>
 
       <a-entity position="0 0 5">
-        <a-image id="tap-to-continue" src="#image-tap-to-continue" onClick="location.href='../photos.html'" position="0 0 5" rotation="0 180 0" scale="1.5 1.5 1.5"></a-image>
+        <a-image id="tap-to-continue" src="#image-tap-to-continue" onClick="location.href='../demos/photos.html'" position="0 0 5" rotation="0 180 0" scale="1.5 1.5 1.5"></a-image>
 
         <a-entity camera look-controls id="player">
           <a-cursor color="#FFFFAA"></a-cursor>
