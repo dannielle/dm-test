@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Decatur Maker + BNR Test</title>
+    <meta name="description" content="Decatur Maker + BNR Test">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="image-tap-to-continue" src="images/tap-to-continue.png"></img>
+        <img id="image-tap-to-restart" src="images/tap-to-restart.png"></img>
+        <img id="image-a" src="images/a.jpg"></img>
+        <img id="image-b" src="images/b.jpg"></img>
+        <img id="image-c" src="images/c.jpg"></img>
+        <img id="image-d" src="images/d.jpg"></img>
+        <img id="image-e" src="images/e.jpg"></img>
+        <img id="image-f" src="images/f.jpg"></img>
+        <img id="image-g" src="images/g.jpg"></img>
+        <img id="image-h" src="images/h.jpg"></img>
+        <img id="image-i" src="images/i.jpg"></img>
+      </a-assets>
+
+      <a-sky id="sky" src="#image-a" rotation="0 180 0"></a-sky>
+
+      <a-image id="tap-to-restart" src="#image-tap-to-restart" position="0 0 2" scale="1.5 1.5 1.5" onClick="location.href='/'" visible="false"></a-image>
+
+      <a-entity position="0 0 5">
+        <a-image id="tap-to-continue" src="#image-tap-to-continue" position="0 0 2" rotation="0 180 0" scale="1.5 1.5 1.5"></a-image>
+
+        <a-entity camera look-controls id="player">
+          <a-cursor color="#FFFFAA"></a-cursor>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+  <script>
+      var sceneEl = document.getElementsByTagName('a-scene')[0];
+
+      sceneEl.addEventListener('loaded', function() {
+        var sky = document.querySelector("#sky");
+        var tapToContinue = document.querySelector("#tap-to-continue");
+
+        tapToContinue.addEventListener("click", function() {
+          tapToContinue.emit("next-photo");
+        });
+        tapToContinue.addEventListener("next-photo", function() {
+          sky.setAttribute("src", "#image-b");
+          tapToContinue.setAttribute("visible", "false");
+          document.querySelector("#tap-to-restart").setAttribute("visible", "true");
+        });
+      });
+
+  </script>
+</html>
