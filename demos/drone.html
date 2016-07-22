@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Decatur Maker + BNR Test</title>
+    <meta name="description" content="Decatur Maker + BNR Test">
+    <script src="https://aframe.io/releases/0.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="image-play-video" src="../images/play-video.png"></img>
+        <img id="image-tap-to-continue" src="../images/tap-to-continue.png"></img>
+        <video id="drone-video" src="../videos/drone.mp4"></video>
+      </a-assets>
+
+      <a-image id="play-video" src="#image-play-video" position="0 0 2"></a-image>
+      <a-image id="tap-to-continue" src="#image-tap-to-continue" onClick="location.href='../demos/model.html'" position="0 0 10" rotation="0 180 0" scale="1.5 1.5 1.5"></a-image>
+
+      <a-videosphere id="vs" src="#drone-video" rotation="0 -90 0"></a-videosphere>
+
+      <a-entity position="0 0 5">
+        <a-entity camera look-controls id="player">
+          <a-cursor color="#FFFFAA"></a-cursor>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+  <script>
+      var sceneEl = document.getElementsByTagName('a-scene')[0];
+
+      sceneEl.addEventListener('loaded', function() {
+        document.querySelector("video#drone-video").pause();
+        var vs = document.querySelector("#vs");
+        var startButton = document.querySelector("#play-video");
+
+        startButton.addEventListener("click", function() {
+          vs.emit("start");
+          startButton.setAttribute("visible", "false");
+        });
+        vs.addEventListener("start", function() {
+          setTimeout( function() {
+            document.querySelector("video#drone-video").play();
+          }, 150);
+        });
+      });
+
+  </script>
+</html>
