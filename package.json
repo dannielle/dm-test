@@ -12,6 +12,8 @@
     "budo": "^7.0.0",
     "ghpages": "0.0.3"
   },
-  "keywords": [
-  ]
+  "keywords": [],
+  "dependencies": {
+    "aframe-extras": "^2.2.0"
+  }
 }

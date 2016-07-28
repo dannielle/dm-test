@@ -1,0 +1,18 @@
+button {
+	font-size: 1em;
+	position: absolute;
+	z-index: 100;
+	left: 10px;
+}
+
+#buttonToSkyA {
+	top: 10px;
+}
+
+#buttonToSkyB {
+	top: 50px;
+}
+
+#buttonToGroundAndSky {
+	top: 90px;
+}
