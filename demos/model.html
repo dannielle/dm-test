@@ -15,7 +15,9 @@
 
     <button id="buttonToSkyA">Change Background to Photo A</button>
     <button id="buttonToSkyB">Change Background to Photo B</button>
+    <button id="buttonToSkyC">Change Background to Photo C</button>
     <button id="buttonToGroundAndSky">Change Background to Ground and Sky</button>
+    <button id="buttonToToggleModel">Toggle House Visibility</button>
 
     <a-scene>
       <a-assets>
@@ -24,9 +26,10 @@
         <img id="image-sky" src="../images/sky.png"></img>
         <img id="image-a" src="../images/a.jpg"></img>
         <img id="image-b" src="../images/b.jpg"></img>
+        <img id="image-c" src="../images/j.jpg"></img>
       </a-assets>
 
-      <a-collada-model src="#model-tiny" scale="25 25 25" position="-50 8 100" material="src: url(../images/balsa.jpg);"></a-collada-model>
+      <a-collada-model id="model-house" src="#model-tiny" scale="25 25 25" position="-50 8 100" src="../images/balsa.jpg"></a-collada-model>
 
       <!-- Front -->
       <a-light color="#f1cea1" position="2 -5 4" intensity="0.75"></a-light>
@@ -58,7 +61,11 @@
         var sky = document.querySelector("#sky");
         var buttonToSkyA = document.querySelector("button#buttonToSkyA");
         var buttonToSkyB = document.querySelector("button#buttonToSkyB");
+        var buttonToSkyC = document.querySelector("button#buttonToSkyC");
         var buttonToGroundAndSky = document.querySelector("button#buttonToGroundAndSky");
+        var model = document.querySelector("#model-house");
+        var modelVisibility = true;
+        var buttonToToggleModel = document.querySelector("button#buttonToToggleModel");
 
         buttonToSkyA.addEventListener("click", function() {
           console.log("click")
@@ -79,13 +86,35 @@
           document.querySelector("#ground").setAttribute("visible", "false");
         });
 
-        buttonToGroundAndSky.addEventListener("click", function() {
+        buttonToSkyC.addEventListener("click", function() {
           console.log("click")
+          sky.emit("sky-c");
+        });
+        sky.addEventListener("sky-c", function() {
+          sky.setAttribute("src", "#image-c");
+          document.querySelector("#ground").setAttribute("visible", "false");
+        });
+
+        buttonToGroundAndSky.addEventListener("click", function() {
           sky.emit("ground-and-sky");
         });
         sky.addEventListener("ground-and-sky", function() {
-          sky.setAttribute("src", "#sky");
+          sky.setAttribute("src", "#image-sky");
           document.querySelector("#ground").setAttribute("visible", "true");
+        });
+
+        buttonToToggleModel.addEventListener("click", function() {
+          model.emit("toggle-model");
+        });
+        model.addEventListener("toggle-model", function() {
+          if (modelVisibility) {
+            model.setAttribute("visible", "false");
+            modelVisibility = false;
+          }
+          else {
+            model.setAttribute("visible", "true");
+            modelVisibility = true;
+          }
         });
 
 

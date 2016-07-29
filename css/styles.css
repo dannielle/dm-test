@@ -13,6 +13,16 @@ button {
 	top: 50px;
 }
 
-#buttonToGroundAndSky {
+#buttonToSkyC {
 	top: 90px;
+}
+
+#buttonToGroundAndSky {
+	top: 10px;
+	left: 300px;
+}
+
+#buttonToToggleModel {
+	top: 50px;
+	left: 300px;
 }
